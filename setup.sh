@@ -7,6 +7,7 @@ REPO_SSH="git@github.com:SimpYukii/SimpYukii.git"
 APP_DIR=/opt/shortsbot
 KEY=/root/.ssh/github_shortsbot
 
+if ! command -v git >/dev/null; then apt-get update && apt-get install -y git openssh-client; fi
 mkdir -p /root/.ssh && chmod 700 /root/.ssh
 if [ ! -f "$KEY" ]; then
   ssh-keygen -t ed25519 -N "" -C "shortsbot-server" -f "$KEY" >/dev/null
@@ -31,6 +32,5 @@ until GIT_SSH_COMMAND="ssh -o BatchMode=yes" git ls-remote "$REPO_SSH" >/dev/nul
 done
 echo "✓ GitHub-Zugriff klappt."
 
-if ! command -v git >/dev/null; then apt-get update && apt-get install -y git; fi
 [ -d "$APP_DIR/.git" ] || git clone "$REPO_SSH" "$APP_DIR"
 bash "$APP_DIR/deploy/setup-server.sh" "$REPO_SSH"
