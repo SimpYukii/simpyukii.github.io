@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SimpYukii Clips – TikTok-Anmeldung</title>
+<meta name="robots" content="noindex">
+<style>body{font-family:system-ui,sans-serif;background:#0e0b18;color:#eee;display:grid;place-items:center;min-height:100vh;margin:0}</style>
+</head><body><p id="m">Weiterleitung zur Freigabe-Webseite …</p>
+<script>
+// TikTok leitet nach der Anmeldung hierher (bestätigte Domain) – weiter zum eigenen Server, Code + State unverändert.
+var SERVER = "https://2-31-112-199.sslip.io";
+var target = SERVER + "/connect/tiktok/callback" + window.location.search;
+document.getElementById("m").innerHTML = 'Weiterleitung … <a href="' + target.replace(/"/g, "") + '">weiter</a>';
+window.location.replace(target);
+</script></body></html>
